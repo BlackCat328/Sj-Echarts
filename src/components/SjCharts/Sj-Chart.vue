@@ -30,6 +30,7 @@
  onMounted(() => {
   myChart.value = markRaw($echart.init(container.value)); //获取echarts实例使用markRaw解除响应式
   myChart.value.setOption(options.value); //设置echarts配置项
+  window.onresize = resizeHandler;
   window.addEventListener("resize", resizeHandler); //监听浏览器窗口大小
  });
  const resizeHandler = () => {
@@ -49,7 +50,7 @@
 </script>
 <style scoped>
  .container {
-  width: 500px;
-  height: 350px;
+  width: 100%;
+  height: 50vh;
  }
 </style>

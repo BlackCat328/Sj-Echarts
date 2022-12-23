@@ -1,10 +1,18 @@
 <template>
  <button @click="changeData">改变</button>
  <button @click="restoreData">恢复</button>
- <SjChart :options="lineOption"></SjChart>
- <SjChart :options="pieOption"></SjChart>
- <SjChart :options="barOption"></SjChart>
- <SjChart :options="lineOption2"></SjChart>
+ <div class="cnt-charts">
+  <SjChart :options="lineOption"></SjChart>
+ </div>
+ <div class="cnt-charts">
+  <SjChart :options="pieOption"></SjChart>
+ </div>
+ <div class="cnt-charts">
+  <SjChart :options="barOption"></SjChart>
+ </div>
+ <div class="cnt-charts">
+  <SjChart :options="lineOption2"></SjChart>
+ </div>
 </template>
 <script setup lang="ts">
  import SjChart from "./components/SjCharts/Sj-Chart.vue";
@@ -119,4 +127,7 @@
  });
 </script>
 
-<style></style>
+<style>
+ .cnt-charts {
+ }
+</style>
