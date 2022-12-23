@@ -4,7 +4,7 @@
  <SjChart :options="lineOption"></SjChart>
  <SjChart :options="pieOption"></SjChart>
  <SjChart :options="barOption"></SjChart>
- <SjChart :options="barOption2"></SjChart>
+ <SjChart :options="lineOption2"></SjChart>
 </template>
 <script setup lang="ts">
  import SjChart from "./components/SjCharts/Sj-Chart.vue";
@@ -13,17 +13,18 @@
  const lineOption = ref<object>();
  const pieOption = ref<object>();
  const barOption = ref<object>();
- const barOption2 = ref<object>();
+ const lineOption2 = ref<object>();
  const changeData = () => {
   /**
    * 点击改变按钮时
-   * 1.getLineOptions()=>折线图递归合并的配置项
-   * 2.getPieOptions()=>饼图递归合并的配置项
-   * 3.getBarOptions()=>柱状图递归合并的配置项
+   * 1.mergeOptions()=>折线图递归合并的配置项
+   * 2.mergeOptions()=>饼图递归合并的配置项
+   * 3.mergeOptions()=>柱状图递归合并的配置项
    */
   lineOption.value = mergeOptions("line", {
    series: [
     {
+     type: "line",
      data: [1200, 25565, 224, 218, 135, 147, 260],
     },
    ],
@@ -31,6 +32,7 @@
   pieOption.value = mergeOptions("pie", {
    series: [
     {
+     name: "空气污染程度",
      data: [
       { value: 100, name: "轻度" },
       { value: 200, name: "中度" },
@@ -47,25 +49,33 @@
     },
    ],
   });
-  barOption2.value = mergeOptions("bar", {
+  lineOption2.value = mergeOptions("line", {
    series: [
     {
-     data: [50, 50, 11, 45, 70, 152],
+     type: "line",
+     data: [800, 1200, 450, 300, 140, 563, 123],
+    },
+    {
+     type: "bar",
+     data: [1200, 5125, 224, 218, 500, 147, 260],
     },
    ],
   });
  };
- /*------------------------------ */
+
+ /*-------------------------------------------------------------------- */
+
  const restoreData = () => {
   /**
    * 点击恢复按钮时
-   * 1.getLineOptions()=>折线图递归合并的配置项
-   * 2.getPieOptions()=>饼图递归合并的配置项
-   * 3.getBarOptions()=>柱状图递归合并的配置项
+   * 1.mergeOptions()=>折线图递归合并的配置项
+   * 2.mergeOptions()=>饼图递归合并的配置项
+   * 3.mergeOptions()=>柱状图递归合并的配置项
    */
   lineOption.value = mergeOptions("line", {
    series: [
     {
+     type: "line",
      data: [150, 250, 224, 218, 135, 147, 260],
     },
    ],
@@ -73,6 +83,7 @@
   pieOption.value = mergeOptions("pie", {
    series: [
     {
+     name: "空气污染程度",
      data: [
       { value: 1048, name: "轻度" },
       { value: 735, name: "中度" },
@@ -89,7 +100,18 @@
     },
    ],
   });
-  barOption2.value = mergeOptions("bar", {});
+  lineOption2.value = mergeOptions("line", {
+   series: [
+    {
+     type: "line",
+     data: [1200, 5125, 224, 218, 500, 147, 260],
+    },
+    {
+     type: "bar",
+     data: [800, 1200, 450, 300, 140, 563, 123],
+    },
+   ],
+  });
  };
  /*------------------------------*/
  onMounted(() => {

@@ -1,11 +1,21 @@
 import _ from "lodash";
 import { toRefs } from "vue";
+
 const getLineOptions = (options?: object): object => {
  //折线图配置项
  const lineOptions = {
+  title: {
+   text: "大标题",
+  },
+  tooltip: {
+   trigger: "axis", //设置提示框触发类型为axis
+   axisPointer: {
+    type: "none",
+   },
+  },
   xAxis: {
    type: "category", //x轴设置为类目轴
-   data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+   data: ["x1", "x2", "x3", "x4", "x5", "x6", "x7"],
   },
   yAxis: {
    type: "value", //y轴设置为数值轴
@@ -13,7 +23,6 @@ const getLineOptions = (options?: object): object => {
   series: [
    {
     data: [],
-    type: "line", //设置图表的类型为折线图
    },
   ],
  };
@@ -31,8 +40,8 @@ const getPieOptions = (options?: object): object => {
   color: ["#3ba1ff", "#4fcb74", "#fbd438", "#f04864"], //设置饼图的默认颜色
   title: [
    {
-    text: "检测人数", //饼图的标题
-    subtext: "300", //饼图的副标题
+    text: "标题1", //饼图的标题
+    subtext: "标题2", //饼图的副标题
     textStyle: {
      fontSize: 12, //设置饼图标题样式
      color: "#999",
@@ -45,7 +54,7 @@ const getPieOptions = (options?: object): object => {
     left: "center", //left居中
    },
    {
-    text: "散光类型占比",
+    text: "大标题",
    },
   ],
   tooltip: {
@@ -54,14 +63,14 @@ const getPieOptions = (options?: object): object => {
   legend: {
    orient: "vertical", //设置图例排列方式为垂直
    align: "left",
-   right: "15%",
+   right: "5%",
    top: "middle",
    itemGap: 20, //图例间距20
    icon: "circle", //图例的样式为圆角
   },
   series: [
    {
-    name: "散光类别占比",
+    name: "内容标题",
     type: "pie", //图表类型为饼图
     radius: ["50%", "70%"],
     avoidLabelOverlap: false,
@@ -92,7 +101,7 @@ const getPieOptions = (options?: object): object => {
 const getBarOptions = (options?: object): object => {
  const barOptions = {
   title: {
-   text: "观度小学-各年级年度体测平均成绩", //设置柱状图默认标题
+   text: "柱状图大标题", //设置柱状图默认标题
   },
   tooltip: {
    trigger: "axis", //设置提示框触发类型为axis
@@ -100,17 +109,9 @@ const getBarOptions = (options?: object): object => {
     type: "shadow",
    },
   },
-  color: ["#3ba1ff"],
+  color: ["#3ba1ff"], // 柱子颜色
   xAxis: {
-   type: "category",
-   data: [
-    "小学一年级",
-    "小学二年级",
-    "小学三年级",
-    "小学四年级",
-    "小学五年级",
-    "小学六年级",
-   ],
+   data: ["x1", "x2", "x3", "x4", "x5", "x6"],
   },
   yAxis: {
    type: "value",
