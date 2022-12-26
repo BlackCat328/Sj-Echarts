@@ -22,6 +22,7 @@ const getLineOptions = (options?: object): object => {
   },
   series: [
    {
+    type: "line",
     data: [],
    },
   ],
@@ -131,4 +132,35 @@ const getBarOptions = (options?: object): object => {
   ...toRefs(opt),
  };
 };
-export { getLineOptions, getPieOptions, getBarOptions };
+
+// 柱状图配置项
+const getScatterOptions = (options?: object): object => {
+ const scatterOptions = {
+  title: {
+   text: "散点图大标题", //设置柱状图默认标题
+  },
+  tooltip: {
+   trigger: "axis", //设置提示框触发类型为axis
+   axisPointer: {
+    type: "none",
+   },
+  },
+  xAxis: {
+   data: ["x1", "x2", "x3", "x4", "x5", "x6"],
+  },
+  yAxis: {},
+  series: [
+   {
+    type: "scatter",
+    data: [],
+   },
+  ],
+ };
+ //通过merge函数递归的合并默认对象和传入对象
+ const opt = _.merge(scatterOptions, options);
+ //需要toRefs恢复响应式
+ return {
+  ...toRefs(opt),
+ };
+};
+export { getLineOptions, getPieOptions, getBarOptions, getScatterOptions };

@@ -1,17 +1,25 @@
 <template>
  <button @click="changeData">改变</button>
  <button @click="restoreData">恢复</button>
- <div class="cnt-charts">
-  <SjChart :options="lineOption"></SjChart>
- </div>
- <div class="cnt-charts">
-  <SjChart :options="pieOption"></SjChart>
- </div>
- <div class="cnt-charts">
-  <SjChart :options="barOption"></SjChart>
- </div>
- <div class="cnt-charts">
-  <SjChart :options="lineOption2"></SjChart>
+ <div class="flex flex-wrap h-screen">
+  <div class="w-1/3 h-1/3">
+   <SjChart :options="lineOption"></SjChart>
+  </div>
+  <div class="w-1/3 h-1/3">
+   <SjChart :options="pieOption"></SjChart>
+  </div>
+  <div class="w-1/3 h-1/3">
+   <SjChart :options="barOption"></SjChart>
+  </div>
+  <div class="w-1/3 h-1/3">
+   <SjChart :options="lineOption2"></SjChart>
+  </div>
+  <div class="w-1/3 h-1/3">
+   <SjChart :options="scatterOption"></SjChart>
+  </div>
+  <div class="w-1/3 h-1/3">
+   <SjChart :options="scatterOption2"></SjChart>
+  </div>
  </div>
 </template>
 <script setup lang="ts">
@@ -22,6 +30,8 @@
  const pieOption = ref<object>();
  const barOption = ref<object>();
  const lineOption2 = ref<object>();
+ const scatterOption = ref<object>();
+ const scatterOption2 = ref<object>();
  const changeData = () => {
   /**
    * 点击改变按钮时
@@ -60,12 +70,36 @@
   lineOption2.value = mergeOptions("line", {
    series: [
     {
-     type: "line",
+     //  type: "line",
      data: [800, 1200, 450, 300, 140, 563, 123],
     },
     {
      type: "bar",
      data: [1200, 5125, 224, 218, 500, 147, 260],
+    },
+   ],
+  });
+  scatterOption.value = mergeOptions("scatter", {
+   xAxis: {
+    data: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+   },
+   series: [
+    {
+     data: [220, 182, 191, 234, 290, 330, 310],
+    },
+   ],
+  });
+  scatterOption2.value = mergeOptions("scatter", {
+   xAxis: {
+    data: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+   },
+   series: [
+    {
+     data: [220, 182, 191, 234, 290, 330, 310],
+    },
+    {
+     type: "bar",
+     data: [200, 210, 150, 260, 280, 350, 299],
     },
    ],
   });
@@ -111,12 +145,36 @@
   lineOption2.value = mergeOptions("line", {
    series: [
     {
-     type: "line",
+     //  type: "line",
      data: [1200, 5125, 224, 218, 500, 147, 260],
     },
     {
      type: "bar",
      data: [800, 1200, 450, 300, 140, 563, 123],
+    },
+   ],
+  });
+  scatterOption.value = mergeOptions("scatter", {
+   xAxis: {
+    data: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+   },
+   series: [
+    {
+     data: [100, 150, 220, 180, 250, 300, 290],
+    },
+   ],
+  });
+  scatterOption2.value = mergeOptions("scatter", {
+   xAxis: {
+    data: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+   },
+   series: [
+    {
+     data: [100, 150, 220, 180, 250, 300, 290],
+    },
+    {
+     type: "bar",
+     data: [150, 100, 230, 200, 220, 290, 320],
     },
    ],
   });
@@ -126,8 +184,3 @@
   restoreData(); //调用初始化函数
  });
 </script>
-
-<style>
- .cnt-charts {
- }
-</style>
