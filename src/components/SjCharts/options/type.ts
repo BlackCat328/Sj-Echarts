@@ -3,7 +3,7 @@ import {
  getPieOptions,
  getBarOptions,
  getScatterOptions,
-} from "./mergeFn";
+} from "./mergeTools";
 
 export type CT = {
  [key: string]: Function;

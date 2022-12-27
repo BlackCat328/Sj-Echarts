@@ -1,7 +1,8 @@
 import _ from "lodash";
 import { toRefs } from "vue";
+import type { EChartsOption } from "echarts";
 
-const getLineOptions = (options?: object): object => {
+const getLineOptions = (options?: EChartsOption): any => {
  //折线图配置项
  const lineOptions = {
   title: {
@@ -29,14 +30,15 @@ const getLineOptions = (options?: object): object => {
  };
  //通过merge函数递归的合并默认对象和传入对象
  const opt = _.merge(lineOptions, options);
- //需要toRefs恢复响应式
+
  return {
+  //需要toRefs恢复响应式
   ...toRefs(opt),
  };
 };
 
 // 饼图配置项
-const getPieOptions = (options?: object): object => {
+const getPieOptions = (options?: EChartsOption): any => {
  const pieOptions = {
   color: ["#3ba1ff", "#4fcb74", "#fbd438", "#f04864"], //设置饼图的默认颜色
   title: [
@@ -99,7 +101,7 @@ const getPieOptions = (options?: object): object => {
 };
 
 // 柱状图配置项
-const getBarOptions = (options?: object): object => {
+const getBarOptions = (options?: EChartsOption): any => {
  const barOptions = {
   title: {
    text: "柱状图大标题", //设置柱状图默认标题
@@ -134,7 +136,7 @@ const getBarOptions = (options?: object): object => {
 };
 
 // 柱状图配置项
-const getScatterOptions = (options?: object): object => {
+const getScatterOptions = (options?: EChartsOption): any => {
  const scatterOptions = {
   title: {
    text: "散点图大标题", //设置柱状图默认标题
@@ -163,4 +165,5 @@ const getScatterOptions = (options?: object): object => {
   ...toRefs(opt),
  };
 };
+
 export { getLineOptions, getPieOptions, getBarOptions, getScatterOptions };
